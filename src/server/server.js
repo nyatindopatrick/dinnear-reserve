@@ -1,18 +1,34 @@
-let express = require("express");
+const express = require("express");
 const config = require('./config/index')
-
+const bodyParser = require('body-parser')
+const app = express();
 const mongoose = require('mongoose');
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// parse requests of content-type - application/json
+app.use(bodyParser.json())
 
 require('dotenv').config()
 
-let app = express();
+
+
+// Require Notes routes
+const hotelRoutes = require('./routes/hotel.routes')
+
+app.get('/', function (req, res) {
+  res.send('Hello World')
+})
+
+app.use('/api', hotelRoutes)
 
 // database connection
 const db_conn = require('./models/mongoose-connection')
 db_conn.databaseConnection().catch(error => console.error(error))
 
 if (require.main === module) {
-  app.listen(config.PORT, function () {
-    console.log("Express application booted, listening on %s.", config.PORT);
+  app.listen(4000, function () {
+    console.log("Express application booted, listening on %s.", 4000);
    });
 }
