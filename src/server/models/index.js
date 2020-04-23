@@ -5,6 +5,14 @@ let hotelSchema = yup.object().shape({
   email: yup.string().email(),
   location: yup.string().required(),
   website: yup.string().url(),
+ Meals: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      // make sure that we reference the Pet model
+      // ('Pet' is defined as the first parameter to the mongoose.model method)
+      ref: "Meal"
+    }
+  ],
   createdOn: yup.date().default(function() {
     return new Date();
   }),
@@ -13,6 +21,12 @@ let hotelSchema = yup.object().shape({
 let mealSchema = yup.object().shape({
   name: yup.string().required(),
   price: yup.number().required().positive(),
+  hotel:{
+    type: mongoose.Schema.Types.ObjectId,
+    // but it will refer to the Owner model
+    // (the first parameter to the mongoose.model method)
+    ref: "Hotel"
+  },
   createdOn: yup.date().default(function() {
     return new Date();
   }),
@@ -21,7 +35,7 @@ let mealSchema = yup.object().shape({
 let transactionSchema = yup.object().shape({
   transactionID: string().required(),
   amount: number().required().positive(),
-  quantity.number().required().positive().default(1),
+  quantity.number().required().positive(),
   phone:string().required(),
   account: number().required().positive(),
   from: string().required(),
