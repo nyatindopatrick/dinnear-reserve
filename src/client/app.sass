@@ -1,0 +1,359 @@
+@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
+
+$red: #d35649
+$orange: #f15625
+$grey: #98a4a5
+$blue: #509cd8
+$lightgrey: #eeeeee
+
+*
+    margin: 0PX
+    padding: 0px
+    box-sizing: border-box
+
+body
+    padding: 0px
+    margin: 0px
+
+@mixin flex($direction, $position)
+    display: flex
+    flex-direction: $direction
+    justify-content: $position
+    align-items: center
+
+@mixin grid($cols, $height)
+    display: grid
+    grid-template-columns: $cols
+    height: $height
+
+.nav
+    background-color: $red
+    display: grid
+    grid-template-columns: repeat(2,1fr)
+    justify-content: center
+    height: 8vh
+    max-width: 100%!important
+    align-items: center
+    a
+        color: white
+        &:hover
+            color: white
+            text-decoration: none
+    img
+        width: 10rem
+        margin: auto
+    ul
+        display: flex
+        position: relative !important
+        right: 1rem !important
+        list-style: none
+        margin: auto
+    li
+        padding: 0 1rem
+
+.hero
+    background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5) ),url(https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)
+    height: 60vh
+    @include flex(column, center)
+    color: white
+
+.search-area
+    @include flex(column, center)
+    width: 55%
+    background: rgba(255, 255, 255,0.7 )
+    padding: 2% 1rem
+    border-radius: 4px
+    h5
+        text-align: left !important
+        color: black
+        margin-left: 0px
+.how-it-works
+    background: white
+
+.about
+    display: grid
+    grid-template-rows: repeat(3, 1fr)
+    section
+        display: grid
+        align-items: center
+        height: 30vh
+        width: 100%
+.about-contents
+    margin: auto 2rem
+    color: white
+    display: grid
+    grid-template-columns: 4fr 1fr
+    align-items: center
+    img
+        float: right
+        width: 200px
+        height: 200px
+        border-radius: 100%
+
+.about-one
+    background: $red
+
+.about-two
+    background: $grey
+.about-three
+    background: $blue
+.steps
+    color: $red
+    h2
+        text-align: center
+.step-details
+    @include grid(repeat(2, 1fr) , auto )
+    grid-gap: 2rem
+    div
+        @include flex(column, center)
+        text-align: center
+        color: black
+
+        img
+            width: 4rem
+.footer
+    background: black
+    color: white
+    width: 100%
+.footer-bottom
+    background: #1f1f1f
+    width: 100%
+    justify-content: space-between
+    ul
+        @include flex(row, flex-start )
+    li
+        padding: 0 7px
+        a
+            color: white
+.footer-logo
+    width: 5rem
+    border-radius: 100%
+    margin: 0px
+    animation: logo 3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite
+
+.footer-list-one
+    display: flex
+    justify-content: flex-end
+    border-top: 1px solid rgba(255, 255, 255,0.25)
+    border-bottom: 1px solid rgba(255, 255, 255,0.25)
+    li
+        text-align: center
+
+.footer-list-two
+    display: flex
+    justify-content: flex-start
+    border-top: 1px solid rgba(255, 255, 255,0.25)
+    border-bottom: 1px solid rgba(255, 255, 255,0.25)
+.footer-top
+    @include flex(row, center )
+    width: 70%
+    flex-wrap: nowrap
+    margin: 0 auto
+    ul
+        list-style: none
+        @include flex(row, center )
+        width: 100%
+        margin: auto
+
+        li
+            padding: 15px
+
+@keyframes logo
+    0%
+        transform: translateY(0)
+    50%
+        transform: translateY(-20px)
+    100%
+        transform: translateY(0)
+.footer-middle
+    @include grid(repeat(3, 1fr) , minmax(200px, auto) )
+    justify-content: center
+    input
+        width: 90%
+        background: black
+        border: 1px solid rgba(255, 255, 255,0.25)
+        &:focus
+            background: black
+    button
+        background: grey
+
+    div
+        @include flex(column , center )
+        text-align: center
+    section
+        justify-content: center
+        text-align: center
+    a
+        color: $red
+        text-decoration: none
+        &:hover
+            color: $red
+            text-decoration: none
+
+.copyright
+    justify-content: center
+.made-by
+    color: $red
+    text-decoration: none
+    &:hover
+        color: $red
+        text-decoration: none
+.filter-section
+    background: $lightgrey
+    button
+        height: 2.3rem
+        margin-right: 5px
+    label
+        margin-right: 5px
+        margin-left: 5px
+.input
+    width: 100%
+    display: flex
+    outline: $red !important
+    input
+        &:focus
+            outline: none !important
+            border: $red !important
+    button
+        background: $red
+        color: white
+.input-footer
+    display: flex
+    flex-direction: row !important
+    justify-content: center
+    h5
+        text-align: center !important
+.results
+    @include grid(repeat(3, 1fr) , auto)
+    grid-gap: 2rem
+    div
+        background-size: 100% !important
+
+.result-item
+    background: rgba(0,0,0 ,0.9 )
+    margin: 0px
+    a
+        height: 100%
+        width: 100%
+        background: linear-gradient(rgba(0,0,0 ,0.5 ), rgba(0,0,0 ,0.5 ))
+        transition: 0.7s
+        text-decoration: none
+
+        &:hover
+            opacity: 0
+            text-decoration: none
+        h5
+            padding: 50% 0px
+
+.detail-items
+    @include grid(repeat(2,1fr) , auto )
+    grid-gap: 1rem
+    margin: 1rem
+
+.book
+    justify-content: flex-end
+
+@media screen and (min-width: 768px) and (max-width: 1024px) 
+    nav
+        ul
+            span
+                display: none
+    .steps
+        h2
+            font-size: 1.8rem
+    .step-details
+        @include grid(1fr , auto )
+    .footer
+        ul
+            width: 100%
+        div
+            width: 100%
+    .footer-top
+        ul
+            width: 100%
+            li
+                font-size: 0.9rem
+                padding: 8px
+    .filters
+        flex-direction: column
+
+@media ( max-width: 768px )
+    nav
+        display: flex !important
+        flex-direction: column !important
+        justify-content: center !important
+        height: auto
+        padding: 1rem 0px
+        flex-basis: 1rem
+        ul
+            right: 0px !important
+            span
+                display: none
+    .hero
+        h1
+            font-size: 1.5rem
+            width: 90%
+    .search-area
+        width: 90%
+        align-items: flex-start
+        h5
+            text-align: left !important
+            margin: 0px
+    .input
+        flex-direction: column
+        margin: 10px 0px
+        button
+            width: 100%
+        i
+            right: 19%
+            margin-top: -2rem !important
+    .btn-search
+        margin-top: 1rem
+    .steps
+        h2
+            font-size: 1.8rem
+    .step-details
+        @include grid(1fr , auto )
+    .about
+        section
+            height: auto
+    .about-contents
+        img
+            float: right
+            width: 120px
+            height: 120px
+            border-radius: 0px
+            margin: 2px 5px
+    .footer-top
+        flex-direction: column
+        ul
+            li
+                padding: 5px
+    .footer-middle
+        grid-template-columns: 1fr
+        grid-gap: 2rem
+
+    .footer-bottom
+        flex-direction: column
+        align-items: center
+    .input-footer
+        flex-direction: row
+    .filters
+        flex-direction: column
+    .results
+        @include grid(1fr , auto)
+    .filter-section
+        h2
+            font-size: 1.5rem
+    .results-section
+        h2
+            font-size: 1.5rem
+    .detail-items
+        @include grid(1fr , auto )
+        grid-gap: 1rem
+        margin: 1rem
+    .book
+        justify-content: flex-end
+        button
+            width: 100%
+            margin: 1rem
