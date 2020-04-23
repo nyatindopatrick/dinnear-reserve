@@ -1,19 +1,21 @@
 const mealController = require('../controllers/meal.controller')
 const validation = require('../middleware/validation-middleware')
-module.exports = (app) => {
+
+
+const express = require('express');
+// const router = express();
+const router = express.Router({ mergeParams: true })
 
     // Create a new Meal
-  app.post('/hotels/:hotelId/meals', validation.createNewMeal, mealController.create);
+  router.post('/users/:id/meals', mealController.create);
+// Get all meals specific to a certain Hotel
+router.get('/users/:id/meals', mealController.index)
+// get a single meal based on the current loggin in user
+//  api/users/:userId/meals/:mealId
+router.get('/users/:userId/meals/:mealId', mealController.show)
+// update a specific meal entity
+router.post('/users/:userId/meals/:mealId', mealController.update)
+//
 
-    // // Retrieve all Meal
-    // app.get('/notes', notes.findAll);
 
-    // // Retrieve a single Meal with MealID
-    // app.get('/notes/:noteId', notes.findOne);
-
-    // // Update a Meal with MealId
-    // app.put('/notes/:noteId', notes.update);
-
-    // // Delete a Meal with MealID
-    /* app.delete('/notes/:noteId', notes.delete); */
-}
+module.exports = router
