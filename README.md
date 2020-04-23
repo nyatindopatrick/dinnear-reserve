@@ -1,1 +1,1 @@
-#Safe Boda Boda App
+#Restaurant Reservation app
