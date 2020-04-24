@@ -69,7 +69,7 @@ const Order = ({ modalVisible, setVisible, product }) => {
                   </h5>
                   <div class="action">
                     <button class="add-to-cart btn btn-default" type="button">
-                      add to cart
+                      Place Order
                     </button>
                   </div>
                 </div>

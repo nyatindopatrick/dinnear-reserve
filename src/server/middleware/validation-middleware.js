@@ -4,6 +4,7 @@ const createNewMeal = (req, res, next) => {
   const validationRule = {
     "name": "required|string",
     "price": "required|integer",
+    "image": "required|string"
   }
   validator(req.body, validationRule, {}, (err, status) => {
     if (!status) {
@@ -26,6 +27,7 @@ const register = (req, res, next) => {
     "location": "required|string",
     "website": "required|string",
     "phone": "required|string",
+    "photo": "required|string",
     "password": "required|string|min:6",
   }
   validator(req.body, validationRule, {}, (err, status) => {

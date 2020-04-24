@@ -1,35 +1,34 @@
-require('dotenv').config()
-const config = require('../config/index')
-const mongoose = require('mongoose')
+const config = require("../config/index");
+const mongoose = require("mongoose");
 
-mongoose.Promise = Promise
+mongoose.Promise = Promise;
 
-mongoose.connection.on('connected', () => {
-  console.log('Connection Established')
-})
+mongoose.connection.on("connected", () => {
+  console.log("Connection Established");
+});
 
-mongoose.connection.on('reconnected', () => {
-  console.log('Connection Reestablished')
-})
+mongoose.connection.on("reconnected", () => {
+  console.log("Connection Reestablished");
+});
 
-mongoose.connection.on('disconnected', () => {
-  console.log('Connection Disconnected')
-})
+mongoose.connection.on("disconnected", () => {
+  console.log("Connection Disconnected");
+});
 
-mongoose.connection.on('close', () => {
-  console.log('Connection Closed')
-})
+mongoose.connection.on("close", () => {
+  console.log("Connection Closed");
+});
 
-mongoose.connection.on('error', (error) => {
-  console.log('ERROR: ' + error)
-})
-  console.log(config.MONGO_URI)
+mongoose.connection.on("error", error => {
+  console.log("ERROR: " + error);
+});
 databaseConnection = async () => {
-  await mongoose.connect('mongodb+srv://cyrus254:@Ashphalt254@cluster0-lu0o4.mongodb.net/test?retryWrites=true&w=majority', {
+  await mongoose.connect(config.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: true
-  })
-}
+    useFindAndModify: true,
+    useCreateIndex: true
+  });
+};
 
-module.exports.databaseConnection = databaseConnection
+module.exports.databaseConnection = databaseConnection;

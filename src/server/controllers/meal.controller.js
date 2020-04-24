@@ -84,13 +84,13 @@ exports.index = async (req, res) => {
         success: false
       });
     }
-    res.status(200).send({
+    return res.status(200).send({
       success: true,
       meals: meals
     });
   } catch (e) {
     /* handle error */
-    res.status(500).send({
+    return res.status(500).send({
       success: false,
       message: "Internal server error",
       e: e.message

@@ -1,32 +1,41 @@
-import React, { useState } from "react";
-import { storeItems } from "./productList";
+import React, { useState, useEffect } from "react";
 import Modal from "./Order";
+import axios from "axios";
 
-const Products = () => {
+const Products = props => {
   const [modalVisible, setVisible] = useState(false);
   const [activeItem, setActiveItem] = useState({});
+  const [foods, setFoods] = useState(null);
+  const hotel = props.match.params.id;
+  useEffect(() => {
+    axios.post(`api/users/${hotel}/meals`).then(item => {
+      return setFoods(item.data);
+    });
+  }, []);
+  console.log(foods)
+
   return (
     <div>
-      <div class="row mx-2 my-5" id="ads">
-        {storeItems.map(product => {
+      <div className="row mx-2 my-5" id="ads">
+        {!foods ? <p>Loading...</p>: foods.meals.map(product => {
           const { name, _id, price, image } = product;
           return (
-            <div class="col-md-4" key={_id}>
-              <div class="card rounded">
-                <div class="card-image">
-                  <span class="card-notify-badge">{name}</span>
-                  <span class="card-notify-year">Fresh</span>
-                  <img class="img-fluid" src={image} alt="Alternate Text" />
+            <div className="col-md-4" key={_id}>
+              <div className="card rounded">
+                <div className="card-image">
+                  <span className="card-notify-badge">{name}</span>
+                  <span className="card-notify-year">Fresh</span>
+                  <img className="img-fluid" src={image} alt="Alternate Text" />
                 </div>
-                <div class="card-image-overlay m-auto">
-                  <span class="card-detail-badge">Ksh. {price}</span>
+                <div className="card-image-overlay m-auto">
+                  <span className="card-detail-badge">Ksh. {price}</span>
                 </div>
-                <div class="card-body text-center">
-                  <div class="ad-title m-auto">
+                <div className="card-body text-center">
+                  <div className="ad-title m-auto">
                     <h5>{name}</h5>
                   </div>
                   <a
-                    class="ad-btn"
+                    className="ad-btn"
                     href="#"
                     onClick={() => {
                       setActiveItem(product);

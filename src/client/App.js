@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch, BrowserRouter as Router, Route} from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Footer from "./components/Footer/Footer";
@@ -18,9 +18,8 @@ const App = () => {
         <Route path="/search" exact>
           <Search />
         </Route>
-        <Route path="/products" exact>
-          <Products />
-        </Route>
+        <Route path="/:id" exact component={Products} />
+   
         <Route path="/login" exact>
           <Login />
         </Route>

@@ -1,35 +1,34 @@
 const express = require("express");
-const config = require('./config/index')
-const bodyParser = require('body-parser')
+const bodyParser = require("body-parser");
+const path = require("path");
 const app = express();
-const mongoose = require('mongoose');
 
 // parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
-require('dotenv').config()
+require("dotenv").config();
 
-
+app.use(express.static("build"));
 
 // Require Notes routes
-const hotelRoutes = require('./routes/hotel.routes')
-const mealRoutes = require('./routes/meal.routes')
+const hotelRoutes = require("./routes/hotel.routes");
+const mealRoutes = require("./routes/meal.routes");
 
-app.get('/', function (req, res) {
-  res.send('Hello World')
-})
+app.get("/*", function(req, res) {
+  res.sendfile(path.join(__dirname, "../../build", "index.html"));
+});
 
-app.use('/api', hotelRoutes)
-app.use('/api', mealRoutes)
+app.use("/api", hotelRoutes);
+app.use("/api", mealRoutes);
 // database connection
-const db_conn = require('./models/mongoose-connection')
-db_conn.databaseConnection().catch(error => console.error(error))
+const db_conn = require("./models/mongoose-connection");
+db_conn.databaseConnection().catch(error => console.error(error));
 
 if (require.main === module) {
-  app.listen(4000, function () {
+  app.listen(4000, function() {
     console.log("Express application booted, listening on %s.", 4000);
-   });
+  });
 }

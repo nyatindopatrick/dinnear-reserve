@@ -1,8 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Results from "./Results";
+import axios from "axios";
 
 const Search = () => {
   const [inputs, setInputs] = useState(null);
+  const [hotels, setHotels] = useState([]);
+  useEffect(() => {
+    axios
+      .post("/api/hotels")
+      .then(res => {
+        setHotels(res.data);
+      })
+      .catch(err => console.log(err.stack));
+  },[]);
   const handleInputs = e => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
@@ -78,7 +88,7 @@ const Search = () => {
           </button>
         </form>
       </section>
-      <Results />
+      <Results hotels={hotels} />
     </div>
   );
 };

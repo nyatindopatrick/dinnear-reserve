@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const imageInlineSizeLimit = parseInt(
   process.env.IMAGE_INLINE_SIZE_LIMIT || "10000"
 );
-const outputDirectory = "dist";
+const outputDirectory = "build";
 
 module.exports = {
   entry: ["babel-polyfill", "./src/client/index.js"],
@@ -55,7 +55,7 @@ module.exports = {
     port: 3001,
     open: true,
     proxy: {
-      "/api": "http://localhost:8080"
+      "/api": "http://localhost:4000"
     }
   },
   plugins: [
