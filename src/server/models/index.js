@@ -1,57 +1,45 @@
-let yup = require("yup");
+const mongoose = require("mongoose");
+var uniqueValidator = require("mongoose-unique-validator");
 
-let hotelSchema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email(),
-  location: yup.string().required(),
-  website: yup.string().url(),
-  Meals: [
+let hotelSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, index: true, unique: true, required: true },
+  location: { type: String, required: true },
+  website: { type: String, required: true },
+  phone: { type: String, required: true },
+  password: { type: String, required: true },
+  meals: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      // make sure that we reference the Meal model
-      // ('Pet' is defined as the first parameter to the mongoose.model method)
       ref: "Meal"
     }
   ],
-  createdOn: yup.date().default(function() {
-    return new Date();
-  })
+  createdOn: { type: Date, default: Date.now }
 });
 
-let mealSchema = yup.object().shape({
-  name: yup.string().required(),
-  price: yup
-    .number()
-    .required()
-    .positive(),
+hotelSchema.plugin(uniqueValidator);
+
+let mealSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  price: { type: Number, required: true },
+  image: { type: String, required: true },
+  createdOn: { type: Date, default: Date.now },
   hotel: {
     type: mongoose.Schema.Types.ObjectId,
     // but it will refer to the Hotel model
     // (the first parameter to the mongoose.model method)
     ref: "Hotel"
-  },
-  image: you.String().required(),
-  createdOn: yup.date().default(function() {
-    return new Date();
-  })
+  }
 });
 
-let transactionSchema = yup.object().shape({
-  transactionID: string().required(),
-  amount: number()
-    .required()
-    .positive(),
-  quantity: number()
-    .required()
-    .positive(),
-  phone: string().required(),
-  account: number()
-    .required()
-    .positive(),
-  from: string().required(),
-  createdOn: yup.date().default(function() {
-    return new Date();
-  })
+let transactionSchema = new mongoose.Schema({
+  transactionID: { type: String, required: true },
+  amount: { type: Number, required: true },
+  quantity: { type: Number, required: true },
+  phone: { type: String, required: true },
+  account: { type: Number, required: true },
+  from: { type: String, required: true },
+  createdOn: { type: Date, default: Date.now }
 });
 
 const Meal = mongoose.model("Order", mealSchema);
