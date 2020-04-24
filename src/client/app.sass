@@ -253,6 +253,186 @@ body
 .book
     justify-content: flex-end
 
+.custom-select
+    position: relative
+    font-family: Arial
+    width: auto
+    padding: .375rem .75rem .375rem .75rem
+    select
+        outline: none
+        border: none
+
+.select-selected
+    background-color: DodgerBlue
+    &:after
+        position: absolute
+        content: ""
+        top: 14px
+        right: 10px
+        width: 0
+        height: 0
+        border: 6px solid transparent
+        border-color: #fff transparent transparent transparent
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-arrow-active
+    &:after
+        border-color: transparent transparent #fff transparent
+        top: 7px
+
+/*style the items (options), including the selected item:*/
+.select-items
+    div
+        color: #ffffff
+        padding: 8px 16px
+        border: 1px solid transparent
+        border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent
+        cursor: pointer
+        user-select: none
+
+/*style items (options):*/
+.select-items
+    position: absolute
+    background-color: DodgerBlue
+    top: 100%
+    left: 0
+    right: 0
+    z-index: 99
+
+/*hide the items when the select box is closed:*/
+.select-hide
+    display: none
+
+.select-items, .same-as-selected
+    div
+        &:hover
+            background-color: rgba(0, 0, 0, 0.1)
+
+.card-notify-badge
+    position: absolute
+    left: -10px
+    top: -20px
+    background: #f2d900
+    text-align: center
+    border-radius: 30px 30px 30px 30px
+    color: #000
+    padding: 5px 10px
+    font-size: 14px
+
+.card-notify-year
+    position: absolute
+    right: -10px
+    top: -20px
+    background: #ff4444
+    border-radius: 50%
+    text-align: center
+    color: #fff
+    font-size: 14px
+    width: 50px
+    height: 50px
+    padding: 15px 0 0 0
+
+.card-detail-badge
+    background: #f2d900
+    text-align: center
+    border-radius: 30px 30px 30px 30px
+    color: #000
+    padding: 5px 10px
+    font-size: 14px
+
+.card
+    &:hover
+        background: #fff
+        box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15)
+        border-radius: 4px
+        transition: all 0.3s ease
+
+.card-image-overlay
+    font-size: 20px
+    & span
+        display: inline-block
+.card-body
+    display: block
+.ad-btn
+    text-transform: uppercase
+    width: 150px
+    height: 40px
+    border-radius: 80px
+    font-size: 16px
+    line-height: 35px
+    text-align: center
+    border: 3px solid #e6de08
+    display: block
+    text-decoration: none
+    margin: 20px auto 1px auto
+    color: #000
+    overflow: hidden
+    position: relative
+    background-color: #e6de08
+    &:hover
+        background-color: #e6de08
+        color: #1e1717
+        border: 2px solid #e6de08
+        background: transparent
+        transition: all 0.3s ease
+        box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15)
+        text-decoration: none
+
+.ad-title
+    h5
+        text-transform: uppercase
+        font-size: 18px
+.split
+    height: 100%
+    width: 50%
+    position: fixed
+    z-index: 1000
+    top: 0
+    overflow-x: hidden
+    padding-top: 20px
+
+/* Control the left side */
+.left
+    left: 0
+    background: linear-gradient(rgba(0,0,0, 0.3), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/541216/pexels-photo-541216.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")
+    background-size: cover
+/* Control the right side */
+.right
+    right: 0
+    background-color: rgba(211, 86, 72, 0.4)
+    h3
+        font-size: 2rem
+
+/* If you want the content centered horizontally and vertically */
+.centered
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    text-align: center
+.center-right
+    position: absolute
+    top: 35%
+    left: 50%
+    transform: translate(-50%, -50%)
+    text-align: center
+.login_inputs
+    display: flex
+    flex-direction: column
+    width: 25vw
+    >span
+        margin: 1rem
+.login-buttons
+    display: flex
+    justify-content: center
+    width: 25vw
+.btn_login
+    border: 2px solid black !important
+    color: black !important
+    padding: 5px 20px !important
+    &:hover
+        background: black !important
+        color: white !important
 @media screen and (min-width: 768px) and (max-width: 1024px) 
     nav
         ul

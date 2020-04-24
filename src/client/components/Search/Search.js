@@ -5,9 +5,9 @@ const Search = () => {
   const [inputs, setInputs] = useState(null);
   const handleInputs = e => {
     const { name, value } = e.target;
-    setInputs({...inputs,  [name]: value });
+    setInputs({ ...inputs, [name]: value });
   };
-  console.log(inputs)
+  console.log(inputs);
   return (
     <div>
       <section className="filter-section my-lg-5 my-md-5 p-5">
@@ -18,11 +18,17 @@ const Search = () => {
           className="container d-flex justify-content-center filters
                     mx-auto"
         >
-          <label for="name">
+          <label htmlFor="name">
             NAME:
-            <input id="name" className="form-control" type="text" name="name" onChange={handleInputs} />
+            <input
+              id="name"
+              className="form-control"
+              type="text"
+              name="name"
+              onChange={handleInputs}
+            />
           </label>
-          <label for="location">
+          <label htmlFor="location">
             LOCATION:
             <span className="input">
               <input
@@ -32,34 +38,25 @@ const Search = () => {
                 name="location"
                 onChange={handleInputs}
               />
-              <span>
-                <i
-                  className="fas fa-chevron-down position-absolute
-                                    ml-n4 mt-2"
-                ></i>
-              </span>
             </span>
           </label>
-          <label for="stars">
+          <label htmlFor="stars">
             STARS:
-            <span className="input">
-              <input
-                id="stars"
-                className="form-control"
-                type="number"
-                name="stars"
-                onChange={handleInputs}
-              />
-              <span>
-                <i
-                  className="fas fa-chevron-down position-absolute
-                                    ml-n4 mt-2"
-                ></i>
-              </span>
-            </span>
+            <br />
+            <div className="custom-select">
+              <select name="stars" onChange={handleInputs}>
+                <option value="0">Select Stars</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
           </label>
-          <label for="price">
+          <label htmlFor="price">
             PRICE:
+            <br />
             <input type="range" min="1" max="100" onChange={handleInputs} />
           </label>
           <button

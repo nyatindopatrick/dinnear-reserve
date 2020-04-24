@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Footer from "./components/Footer/Footer";
 import Search from "./components/Search/Search";
+import Products from "./components/Products/Products";
+import Login from "./components/Login/Login";
 
 const App = () => {
   return (
@@ -15,6 +17,12 @@ const App = () => {
         </Route>
         <Route path="/search" exact>
           <Search />
+        </Route>
+        <Route path="/products" exact>
+          <Products />
+        </Route>
+        <Route path="/login" exact>
+          <Login />
         </Route>
       </Switch>
       <Footer />

@@ -1,17 +1,17 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const imageInlineSizeLimit = parseInt(
-  process.env.IMAGE_INLINE_SIZE_LIMIT || '10000'
+  process.env.IMAGE_INLINE_SIZE_LIMIT || "10000"
 );
-const outputDirectory = 'dist';
+const outputDirectory = "dist";
 
 module.exports = {
-  entry: ['babel-polyfill', './src/client/index.js'],
+  entry: ["babel-polyfill", "./src/client/index.js"],
   output: {
     path: path.join(__dirname, outputDirectory),
-    filename: 'bundle.js',
-    publicPath: '/'
+    filename: "bundle.js",
+    publicPath: "/"
   },
   module: {
     rules: [
@@ -19,50 +19,50 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: "babel-loader"
         }
       },
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: require.resolve('url-loader'),
+        loader: require.resolve("url-loader"),
         options: {
           limit: imageInlineSizeLimit,
-          name: 'static/media/[name].[hash:8].[ext]',
-        },
+          name: "static/media/[name].[hash:8].[ext]"
+        }
       },
-       {
-        test: /\.s[ac]ss$/i,
+      {
+        test: [/\.s[ac]ss$/i, /\.css$/],
         use: [
           // Creates `style` nodes from JS strings
-          'style-loader',
+          "style-loader",
           // Translates CSS into CommonJS
-          'css-loader',
+          "css-loader",
           // Compiles Sass to CSS
-          'sass-loader',
-        ],
+          "sass-loader"
+        ]
       },
       {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader?limit=100000'
+        loader: "url-loader?limit=100000"
       }
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ["*", ".js", ".jsx"]
   },
   devServer: {
     historyApiFallback: true,
     port: 3001,
     open: true,
     proxy: {
-      '/api': 'http://localhost:8080'
+      "/api": "http://localhost:8080"
     }
   },
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
-      template: './public/index.html',
-      favicon: './public/favicon.ico'
+      template: "./public/index.html",
+      favicon: "./public/favicon.ico"
     })
   ]
 };

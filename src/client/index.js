@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './app.sass'
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import "antd/dist/antd.css";
+import "./app.sass";
+import './index.sass'
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
+ReactDOM.render(<App />, document.getElementById("root"));
