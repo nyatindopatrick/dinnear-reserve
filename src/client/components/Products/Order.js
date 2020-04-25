@@ -13,6 +13,7 @@ const Order = ({ modalVisible, setVisible, product }) => {
     const { value, name } = e.target;
     setQuantity({ ...quantity, [name]: value > 0 ? value : 1 });
   };
+  console.log(quantity);
 
   // display or hide phone input
   const handlePhone = () => {
@@ -27,7 +28,8 @@ const Order = ({ modalVisible, setVisible, product }) => {
   const handleCheckout = async () => {
     const paid = await axios.post("/api/checkout", {
       ...quantity,
-      price: getPrice()
+      price: getPrice(),
+      item: name
     });
     console.log(paid.data);
     return setCharged(paid.data);
@@ -45,8 +47,8 @@ const Order = ({ modalVisible, setVisible, product }) => {
         {charged ? (
           <Result
             status="success"
-            title="Successfully Purchased Cloud Server ECS!"
-            subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+            title="Checkout Successful!"
+            subTitle="Order number: 2017182818828182881 Please check your phone and complete the transaction."
           />
         ) : (
           <div className="container">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Order";
 import axios from "axios";
+import Loading from '../Loader/Loading'
 
 const Products = props => {
   const [modalVisible, setVisible] = useState(false);
@@ -8,16 +9,22 @@ const Products = props => {
   const [foods, setFoods] = useState(null);
   const hotel = props.match.params.id;
   useEffect(() => {
-    axios.post(`api/users/${hotel}/meals`).then(item => {
+    axios.post(`/api/users/${hotel}/meals`).then(item => {
       return setFoods(item.data);
     });
   }, []);
-  console.log(foods)
+  console.log(hotel)
 
   return (
     <div>
+      {
+        !foods? (
+          <div className="load_center">
+           <Loading/>
+           </div>
+        ):
       <div className="row mx-2 my-5" id="ads">
-        {!foods ? <p>Loading...</p>: foods.meals.map(product => {
+        {foods.meals.map(product => {
           const { name, _id, price, image } = product;
           return (
             <div className="col-md-4" key={_id}>
@@ -55,6 +62,7 @@ const Products = props => {
           product={activeItem}
         />
       </div>
+      }
     </div>
   );
 };

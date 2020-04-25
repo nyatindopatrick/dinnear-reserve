@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Results = ({ hotels }) => {
+const Results = ({ hotels, Loading }) => {
   return (
     <section className="results-section">
       <h2 className="text-center text_grey">
@@ -9,12 +9,14 @@ const Results = ({ hotels }) => {
       </h2>
       <div className="container">
         <div className="results my-5">
-          {hotels &&
+          {!hotels ? (
+            <Loading />
+          ) : (
             hotels.map(item => {
               const { name, photo, _id } = item;
               return (
                 <Link
-                  to={`/${_id}`}
+                  to={`/hotel/${_id}`}
                   className="d-flex result-item"
                   style={{
                     background: `url(${photo}) 0% 0% / cover`
@@ -26,7 +28,8 @@ const Results = ({ hotels }) => {
                   </a>
                 </Link>
               );
-            })}
+            })
+          )}
         </div>
       </div>
     </section>

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import Results from "./Results";
 import axios from "axios";
 
-const Search = () => {
+const Search = ({Loading}) => {
   const [inputs, setInputs] = useState(null);
-  const [hotels, setHotels] = useState([]);
+  const [hotels, setHotels] = useState(null);
   useEffect(() => {
     axios
       .post("/api/hotels")
@@ -88,7 +88,7 @@ const Search = () => {
           </button>
         </form>
       </section>
-      <Results hotels={hotels} />
+      <Results hotels={hotels} Loading={Loading} />
     </div>
   );
 };

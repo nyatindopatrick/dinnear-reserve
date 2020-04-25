@@ -16,6 +16,7 @@ app.use(express.static("build"));
 // Require Notes routes
 const hotelRoutes = require("./routes/hotel.routes");
 const mealRoutes = require("./routes/meal.routes");
+const payRoutes = require("./routes/checkout.routes");
 
 app.get("/*", function(req, res) {
   res.sendfile(path.join(__dirname, "../../build", "index.html"));
@@ -23,6 +24,7 @@ app.get("/*", function(req, res) {
 
 app.use("/api", hotelRoutes);
 app.use("/api", mealRoutes);
+app.use("/api", payRoutes);
 // database connection
 const db_conn = require("./models/mongoose-connection");
 db_conn.databaseConnection().catch(error => console.error(error));
