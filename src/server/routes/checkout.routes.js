@@ -1,0 +1,1 @@
+const mealController = require('../controllers/meal.controller')
